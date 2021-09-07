@@ -18,8 +18,14 @@ class MainActivity : AppCompatActivity() {
             startService(mStartService) // karena kita menginginkan sebuah service yang berjalan bukan startActivity
         }
 
+        /*
+        melakukan pemrosesan obyek Intent yang dikirimkan dan menjalankan suatu proses yang berjalan di background
+         */
         val btnStartJobIntentService = findViewById<Button>(R.id.btn_start_job_intent_service)
         btnStartJobIntentService.setOnClickListener {
+            val mStartIntentService = Intent(this, MyJobIntentService::class.java)
+            mStartIntentService.putExtra(MyJobIntentService.EXTRA_DURATION,5000L)
+            MyJobIntentService.enqueueWork(this, mStartIntentService)
 
         }
 
